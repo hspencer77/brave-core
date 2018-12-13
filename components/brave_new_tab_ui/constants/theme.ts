@@ -11,13 +11,29 @@ export const theme = {
     padding: '80px 60px 40px',
     background: 'linear-gradient(#4b3c6e, #000)'
   },
-
-/* styling for the stats items is still linked to `src/brave/node_modules/brave-ui/src/features/newTab/stats/style.ts` */
-
+  /* none of these styles are getting pulled in. still linked to brave-ui 
+  trackersBlocked: {	
+    counterColor: '#fb542b',
+    descriptionColor: '#fff',
+  },
+  adsBlocked: {	
+    counterColor: '#B02FFB',	
+    descriptionColor: '#fff'	
+  },
+  httpsUpgrades: {	
+    counterColor: '#4C54D2',	
+    descriptionColor: '#fff'	
+  },
+  estimatedTime: {	
+    counterColor: '#FFF',	
+    descriptionColor: '#fff'	
+  }, */
+  
   clock: {
     color: '#fff',
     fontSize: '90px'
   },
+  
   clockContainer: {
     justifyContent: 'flex-end'
   },
