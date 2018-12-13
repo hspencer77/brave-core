@@ -8,8 +8,8 @@ export const theme = {
   },
   newPrivateTab: {
     fontFamily: '"Poppins", sans-serif',
-    padding: '80px 60px 40px',
-    background: 'linear-gradient(#4b3c6e, #000)'
+    padding: "80px 60px 40px",
+    background: "linear-gradient(#4b3c6e, #000)"
   },
   /* none of these styles are getting pulled in. still linked to brave-ui 
   trackersBlocked: {	
@@ -28,41 +28,41 @@ export const theme = {
     counterColor: '#FFF',	
     descriptionColor: '#fff'	
   }, */
-  
+
   clock: {
-    color: '#fff',
-    fontSize: '90px'
+    color: "#fff",
+    fontSize: "90px"
   },
-  
+
   clockContainer: {
-    justifyContent: 'flex-end'
+    justifyContent: "flex-end"
   },
   textualContainer: {
-    maxWidth: '650px',
-    margin: '60px auto 0',
-    color: 'rgba(255,255,255,0.8)',
+    maxWidth: "650px",
+    margin: "60px auto 0",
+    color: "rgba(255,255,255,0.8)",
     fontFamily: '"Muli", sans-serif'
   },
   media: {
-    width: '80px',
-    margin: '0 0 0 25px'
+    width: "80px",
+    margin: "0 0 0 25px"
   },
   title: {
     fontFamily: '"Poppins", sans-serif',
-    fontWeight: '400',
-    color: '#fff'
+    fontWeight: "400",
+    color: "#fff"
   },
   italicText: {
-    fontStyle: 'italic',
-    fontSize: '15px'
+    fontStyle: "italic",
+    fontSize: "15px"
   },
   text: {
-    fontSize: '18px'
+    fontSize: "18px"
   },
   switchContainer: {
-    margin: '40px 0 25px'
+    margin: "40px 0 25px"
   },
   switchButton: {
-    labelColor: 'rgba(255,255,255,0.8)'
+    labelColor: "rgba(255,255,255,0.8)"
   }
-}
+};

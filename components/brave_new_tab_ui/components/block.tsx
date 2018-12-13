@@ -2,22 +2,26 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import * as React from 'react'
+import * as React from "react";
 import {
-  DragSource, DragSourceCollector,
+  DragSource,
+  DragSourceCollector,
   DragSourceConnector,
-  DragSourceMonitor, DragSourceSpec,
-  DropTarget, DropTargetCollector,
+  DragSourceMonitor,
+  DragSourceSpec,
+  DropTarget,
+  DropTargetCollector,
   DropTargetConnector,
-  DropTargetMonitor, DropTargetSpec
-} from 'react-dnd'
+  DropTargetMonitor,
+  DropTargetSpec
+} from "react-dnd";
 
 // Utils
-import { cx } from '../../common/classSet'
+import { cx } from "../../common/classSet";
 
 const Types = {
-  BLOCK: 'block'
-}
+  BLOCK: "block"
+};
 
 const blockSource: DragSourceSpec<Props> = {
   /**
@@ -25,34 +29,36 @@ const blockSource: DragSourceSpec<Props> = {
    * It's the only data available to the drop targets about the drag source
    * @see http://gaearon.github.io/react-dnd/docs-drag-source.html#specification-methods
    */
-  beginDrag (props: Props) {
+  beginDrag(props: Props) {
     return {
       id: props.id
-    }
+    };
   },
 
-  endDrag (props: Props, monitor: DragSourceMonitor) {
-    const item: Props = monitor.getItem() as Props
-    const draggedId = item.id
-    const didDrop = monitor.didDrop()
-    props.onDragEnd(draggedId, didDrop)
+  endDrag(props: Props, monitor: DragSourceMonitor) {
+    const item: Props = monitor.getItem() as Props;
+    const draggedId = item.id;
+    const didDrop = monitor.didDrop();
+    props.onDragEnd(draggedId, didDrop);
   }
-}
+};
 
 const blockTarget: DropTargetSpec<Props> = {
   /**
    * Optional. Called when an item is hovered over the component
    * @see http://gaearon.github.io/react-dnd/docs-drop-target.html#specification-methods
    */
-  hover (props: Props, monitor: DropTargetMonitor) {
-    const item: Props = monitor.getItem() as Props
-    const draggedId = item.id
+  hover(props: Props, monitor: DropTargetMonitor) {
+    const item: Props = monitor.getItem() as Props;
+    const draggedId = item.id;
     if (draggedId !== props.id) {
-      const dragRight = monitor.getClientOffset().x - monitor.getInitialSourceClientOffset().x > 0
-      props.onDraggedSite(draggedId, props.id, dragRight)
+      const dragRight =
+        monitor.getClientOffset().x - monitor.getInitialSourceClientOffset().x >
+        0;
+      props.onDraggedSite(draggedId, props.id, dragRight);
     }
   }
-}
+};
 
 /**
  * Both sourceCollect and targetCollect are called *Collecting Functions*
@@ -63,41 +69,44 @@ const blockTarget: DropTargetSpec<Props> = {
  * @see http://gaearon.github.io/react-dnd/docs-drop-target.html#the-collecting-function
  */
 
-const sourceCollect: DragSourceCollector = (connect: DragSourceConnector, monitor: DragSourceMonitor) => {
+const sourceCollect: DragSourceCollector = (
+  connect: DragSourceConnector,
+  monitor: DragSourceMonitor
+) => {
   return {
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
-  }
-}
+  };
+};
 
 const targetCollect: DropTargetCollector = (connect: DropTargetConnector) => {
   return {
     connectDropTarget: connect.dropTarget()
-  }
-}
+  };
+};
 
 interface Props {
-  id: string
-  onDragEnd: (draggedId: string, didDrop: boolean) => void
-  onDraggedSite: (draggedId: string, id: string, dragRight: boolean) => void
-  connectDragSource?: any
-  connectDropTarget?: any
-  onToggleBookmark: () => void
-  isBookmarked?: boolean
-  onPinnedTopSite: () => void
-  isPinned: boolean
-  onIgnoredTopSite: () => void
-  title: string
-  href: string
+  id: string;
+  onDragEnd: (draggedId: string, didDrop: boolean) => void;
+  onDraggedSite: (draggedId: string, id: string, dragRight: boolean) => void;
+  connectDragSource?: any;
+  connectDropTarget?: any;
+  onToggleBookmark: () => void;
+  isBookmarked?: boolean;
+  onPinnedTopSite: () => void;
+  isPinned: boolean;
+  onIgnoredTopSite: () => void;
+  title: string;
+  href: string;
   style: {
-    backgroundColor: string
-  }
-  favicon: string
+    backgroundColor: string;
+  };
+  favicon: string;
 }
 
 // TODO remove so many props NZ
 class Block extends React.Component<Props, {}> {
-  render () {
+  render() {
     const {
       connectDragSource,
       connectDropTarget,
@@ -110,52 +119,59 @@ class Block extends React.Component<Props, {}> {
       href,
       style,
       favicon
-    } = this.props
-    const starIcon = isBookmarked ? 'fa-bookmark' : 'fa-bookmark-o'
-    const pinIcon = isPinned ? 'fa-minus' : 'fa-thumb-tack'
+    } = this.props;
+    const starIcon = isBookmarked ? "fa-bookmark" : "fa-bookmark-o";
+    const pinIcon = isPinned ? "fa-minus" : "fa-thumb-tack";
 
-    return connectDragSource(connectDropTarget(
-      <div className='topSiteSquareSpace'>
-        <div
-          className='topSitesElement'
-        >
-          <div className='topSitesActionContainer'>
-            <button
-              className={cx({
-                topSitesActionBtn: true,
-                fa: true,
-                [pinIcon]: true
-              })}
-              onClick={onPinnedTopSite}
-              data-l10n-id={isPinned ? 'pinTopSiteButton' : 'unpinTopSiteButton'}
-            />
-            <button
-              className={cx({
-                topSitesActionBtn: true,
-                fa: true,
-                [starIcon]: true
-              })}
-              onClick={onToggleBookmark}
-              data-l10n-id={isBookmarked ? 'removeBookmarkButton' : 'addBookmarkButton'}
-            />
-            <button
-              className='topSitesActionBtn fa fa-close'
-              onClick={onIgnoredTopSite}
-              data-l10n-id='removeTopSiteButton'
-            />
+    return connectDragSource(
+      connectDropTarget(
+        <div className="topSiteSquareSpace">
+          <div className="topSitesElement">
+            <div className="topSitesActionContainer">
+              <button
+                className={cx({
+                  topSitesActionBtn: true,
+                  fa: true,
+                  [pinIcon]: true
+                })}
+                onClick={onPinnedTopSite}
+                data-l10n-id={
+                  isPinned ? "pinTopSiteButton" : "unpinTopSiteButton"
+                }
+              />
+              <button
+                className={cx({
+                  topSitesActionBtn: true,
+                  fa: true,
+                  [starIcon]: true
+                })}
+                onClick={onToggleBookmark}
+                data-l10n-id={
+                  isBookmarked ? "removeBookmarkButton" : "addBookmarkButton"
+                }
+              />
+              <button
+                className="topSitesActionBtn fa fa-close"
+                onClick={onIgnoredTopSite}
+                data-l10n-id="removeTopSiteButton"
+              />
+            </div>
+            <a
+              className="topSitesElementFavicon"
+              title={title}
+              href={href}
+              style={style}>
+              {isPinned ? (
+                <div className="pinnedTopSite">
+                  <span className="pin fa fa-thumb-tack" />
+                </div>
+              ) : null}
+              <img src={favicon} />
+            </a>
           </div>
-          <a
-            className='topSitesElementFavicon'
-            title={title}
-            href={href}
-            style={style}
-          >
-            {isPinned ? <div className='pinnedTopSite'><span className='pin fa fa-thumb-tack' /></div> : null}
-            <img src={favicon} />
-          </a>
         </div>
-      </div>
-    ))
+      )
+    );
   }
 }
 
@@ -166,7 +182,9 @@ class Block extends React.Component<Props, {}> {
  *
  * @see http://gaearon.github.io/react-dnd/docs-drag-source.html
  */
-const source = DragSource<Props>(Types.BLOCK, blockSource, sourceCollect)(Block)
+const source = DragSource<Props>(Types.BLOCK, blockSource, sourceCollect)(
+  Block
+);
 
 // Notice that we're exporting the DropTarget and not Block Class.
 /**
@@ -175,4 +193,6 @@ const source = DragSource<Props>(Types.BLOCK, blockSource, sourceCollect)(Block)
  *
  * @see http://gaearon.github.io/react-dnd/docs-drop-target.html
  */
-export default DropTarget<Props>(Types.BLOCK, blockTarget, targetCollect)(source)
+export default DropTarget<Props>(Types.BLOCK, blockTarget, targetCollect)(
+  source
+);

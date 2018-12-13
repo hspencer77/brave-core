@@ -13,8 +13,13 @@
   font-weight: inherit;
 }
 
-
-strong, div, span, li, em, p, a {
+strong,
+div,
+span,
+li,
+em,
+p,
+a {
   font-family: inherit;
   font-weight: inherit;
   -webkit-font-smoothing: antialiased; // light text on dark backgrounds on macOS looks better with this
@@ -24,7 +29,9 @@ body {
   background: #fff;
 }
 
-body, .dynamicBackground, bgGradient {
+body,
+.dynamicBackground,
+bgGradient {
   opacity: 0;
   animation: fadeIn 200ms;
   animation-fill-mode: forwards;
@@ -65,7 +72,12 @@ ul {
   top: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, .6) 100%);
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 0) 80%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
   height: 100%;
 }
 
@@ -100,7 +112,7 @@ ul {
       .topSitesElement {
         transition: @transitionFast;
         position: relative;
-        box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         border-radius: 8px;
 
         &:hover {
@@ -144,7 +156,7 @@ ul {
 
         .topSitesElementFavicon {
           position: relative;
-          background-color: #FFF;
+          background-color: #fff;
           border-radius: 8px;
           color: @gray;
           display: flex;
@@ -158,7 +170,7 @@ ul {
           // to avoid backgrounds with the same color as icon
           // (as seen on issue #5868)
           &:before {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
@@ -190,7 +202,6 @@ ul {
               font-size: 10px;
               color: black;
             }
-
           }
           img {
             position: relative;
@@ -238,7 +249,7 @@ ul {
   .siteRemovalNotification {
     @typography-display();
     border-radius: @borderRadius;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
     background-color: #fff;
     width: 500px;
     height: 100px;
@@ -252,7 +263,8 @@ ul {
       cursor: default;
     }
 
-    .notificationText, .siteRemovalAction {
+    .notificationText,
+    .siteRemovalAction {
       margin: 0 6px;
     }
 
@@ -284,18 +296,20 @@ ul {
         @typography-body();
         font-weight: 400;
 
-        &, .photoBy, .copyrightOwner {
-          color: #FFF;
+        &,
+        .photoBy,
+        .copyrightOwner {
+          color: #fff;
           font-size: 12px;
           text-transform: none;
-          opacity: .8;
+          opacity: 0.8;
           font-weight: 800;
-          transition: opacity .15s ease, filter .15s ease;
+          transition: opacity 0.15s ease, filter 0.15s ease;
         }
 
         .copyrightOwner {
           &:hover {
-            opacity: .95;
+            opacity: 0.95;
           }
         }
       }
@@ -310,26 +324,26 @@ ul {
         height: 24px;
         margin: 0 0 0 20px;
         cursor: pointer;
-        background-color :#FFF;
-        opacity: .7;
-        transition: opacity .15s ease, filter .15s ease;
+        background-color: #fff;
+        opacity: 0.7;
+        transition: opacity 0.15s ease, filter 0.15s ease;
         -webkit-mask-repeat: no-repeat;
 
         &:hover {
-          opacity: .95;
+          opacity: 0.95;
         }
 
         &.settingsIcon {
-          -webkit-mask-image: url('../img/newtab/settings_prefs_btn.svg');
-          mask-image: url('../img/newtab/settings_prefs_btn.svg');
+          -webkit-mask-image: url("../img/newtab/settings_prefs_btn.svg");
+          mask-image: url("../img/newtab/settings_prefs_btn.svg");
         }
         &.bookmarksIcon {
-          -webkit-mask-image: url('../img/newtab/bookmarks_btn.svg');
-          mask-image: url('../img/newtab/settings_prefs_btn.svg');          
+          -webkit-mask-image: url("../img/newtab/bookmarks_btn.svg");
+          mask-image: url("../img/newtab/settings_prefs_btn.svg");
         }
         &.historyIcon {
-          -webkit-mask-image: url('../img/newtab/history_btn.svg');
-          mask-image: url('../img/newtab/settings_prefs_btn.svg');
+          -webkit-mask-image: url("../img/newtab/history_btn.svg");
+          mask-image: url("../img/newtab/settings_prefs_btn.svg");
         }
       }
     }
