@@ -173,8 +173,8 @@
   <message name="IDS_MD_EXTENSIONS_ITEM_EXTENSION_WEBSITE" desc="Label for button to go to the website the extension developer specified.">
     Open extension website
   </message>
-  <message name="IDS_MD_EXTENSIONS_ITEM_CHROME_WEB_STORE" desc="Label for button to visit the Brave web store.">
-    View in Brave Web Store
+  <message name="IDS_MD_EXTENSIONS_ITEM_CHROME_WEB_STORE" desc="Label for button to visit the Web Extensions Store.">
+    View in Web Extensions Store
   </message>
   <message name="IDS_MD_EXTENSIONS_ITEM_OPTIONS" desc="The label on the button to open an extension options page.">
     Extension options
@@ -200,8 +200,8 @@
   <message name="IDS_MD_EXTENSIONS_ITEM_SOURCE_UNPACKED" desc="The text to indicate that an extension is loaded as an unpacked extension, as is done by developers.">
     Unpacked extension
   </message>
-  <message name="IDS_MD_EXTENSIONS_ITEM_SOURCE_WEBSTORE" desc="The text to indicate that an extension is from the Brave Web Store.">
-    Brave Web Store
+  <message name="IDS_MD_EXTENSIONS_ITEM_SOURCE_WEBSTORE" desc="The text to indicate that an extension is from the Web Extensions Store.">
+    Web Extensions Store
   </message>
   <message name="IDS_MD_EXTENSIONS_ITEM_VERSION" desc="The label above an extension's version.">
     Version
@@ -222,7 +222,7 @@
     Retry
   </message>
   <message name="IDS_MD_EXTENSIONS_NO_INSTALLED_ITEMS" desc="The message shown to the user on the Extensions settings page when there are no extensions or apps installed.">
-    Find extensions and themes in the <ph name="BEGIN_LINK">&lt;a target="_blank" href="https://chrome.google.com/webstore/category/extensions"&gt;</ph>Brave Web Store<ph name="END_LINK">&lt;/a&gt;<ex>&lt;/a&gt;</ex></ph>
+    You don't have any extensions yet. Would you like to <ph name="BEGIN_LINK">&lt;a target="_blank" href="https://chrome.google.com/webstore/category/extensions"&gt;</ph>install some<ph name="END_LINK">&lt;/a&gt;<ex>&lt;/a&gt;</ex></ph>?
   </message>
   <message name="IDS_MD_EXTENSIONS_NO_DESCRIPTION" desc="The message shown to the user when an extension does not have any description.">
     No description provided

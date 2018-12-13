@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/ui/webui/extensions/extensions_ui.cc b/chrome/browser/ui/webui/extensions/extensions_ui.cc
+index 393653d66928e306bfdf479d6e0fd194655e783c..cc330c1194b80b775e4de82c19d7aa373b8f2270 100644
+--- a/chrome/browser/ui/webui/extensions/extensions_ui.cc
++++ b/chrome/browser/ui/webui/extensions/extensions_ui.cc
+@@ -348,6 +348,7 @@ ExtensionsUI::ExtensionsUI(content::WebUI* web_ui) : WebUIController(web_ui) {
+       base::Bind(&ExtensionsUI::OnDevModeChanged, base::Unretained(this)));
+ 
+   source = CreateMdExtensionsSource(*in_dev_mode_);
++  BraveAddLocalizedStrings(source);
+ 
+ #if defined(OS_CHROMEOS)
+   auto kiosk_app_handler = std::make_unique<chromeos::KioskAppsHandler>(
