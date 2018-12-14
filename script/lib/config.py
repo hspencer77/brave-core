@@ -115,6 +115,17 @@ def s3_config():
     return config
 
 
+def s3_artifacts_config():
+    config = (get_env_var('S3_ARTIFACTS_BUCKET'),
+              get_env_var('S3_ACCESS_KEY'),
+              get_env_var('S3_SECRET_KEY'))
+    message = ('Error: Please set the $BRAVE_S3_ARTIFACTS_BUCKET, '
+               '$BRAVE_S3_ACCESS_KEY, and '
+               '$BRAVE_S3_SECRET_KEY environment variables')
+    assert all(len(c) for c in config), message
+    return config
+
+
 def enable_verbose_mode():
     print 'Running in verbose mode'
     global verbose_mode

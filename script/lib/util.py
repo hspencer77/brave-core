@@ -228,6 +228,17 @@ def s3put(bucket, access_key, secret_key, prefix, key_prefix, files):
     run_boto_script(access_key, secret_key, 's3put', *args)
 
 
+def s3put_private(bucket, access_key, secret_key, prefix, key_prefix, files):
+    args = [
+        '--bucket', bucket,
+        '--prefix', prefix,
+        '--key_prefix', key_prefix,
+        '--grant', 'private'
+    ] + files
+
+    run_boto_script(access_key, secret_key, 's3put', *args)
+
+
 def import_vs_env(target_arch):
     if sys.platform != 'win32':
         return

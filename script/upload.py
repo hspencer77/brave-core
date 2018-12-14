@@ -17,10 +17,10 @@ import tempfile
 from io import StringIO
 from lib.config import (PLATFORM, DIST_URL, get_target_arch,
                         get_chromedriver_version, get_env_var, s3_config,
-                        get_zip_name, product_name, project_name,
+                        s3_artifacts_config, get_zip_name, product_name, project_name,
                         SOURCE_ROOT, dist_dir, output_dir, get_brave_version,
                         get_raw_version)
-from lib.util import execute, parse_version, scoped_cwd, s3put
+from lib.util import execute, parse_version, scoped_cwd, s3put, s3put_private
 from lib.helpers import *
 
 from lib.github import GitHub
@@ -453,6 +453,7 @@ update server.'''.format(warning=warning, win=winstallers)
 
 
 def upload_brave(github, release, file_path, filename=None, force=False):
+    bucket, access_key, secret_key = s3_artifacts_config()
     # Delete the original file before uploading.
     if filename is None:
         filename = os.path.basename(file_path)
@@ -476,7 +477,9 @@ def upload_brave(github, release, file_path, filename=None, force=False):
             catch_func=lambda ran: delete_file(github, release, filename),
             catch=requests.exceptions.ConnectionError, retries=3
         )
-
+    # Upload artifact to S3 artifacts bucket
+    s3put_private(bucket, access_key, secret_key, os.path.dirname(file_path),
+                  release['tag_name'], [file_path])
     # Upload the checksum file.
     upload_sha256_checksum(release['tag_name'], file_path)
 
