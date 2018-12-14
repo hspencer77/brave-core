@@ -478,6 +478,7 @@ def upload_brave(github, release, file_path, filename=None, force=False):
             catch=requests.exceptions.ConnectionError, retries=3
         )
     # Upload artifact to S3 artifacts bucket
+    print('[INFO] Uploading: ' + filename + ' to artifacts bucket ' + bucket)
     s3put_private(bucket, access_key, secret_key, os.path.dirname(file_path),
                   release['tag_name'], [file_path])
     # Upload the checksum file.
